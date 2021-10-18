@@ -1,16 +1,37 @@
 import {Schema, model} from 'mongoose';
 
-const productSchema =  new Schema ({
+const productSchema =  new Schema (
 
-    name: String,
-    description: String,
-    price: Number,
-    state:{type: String, enum: ['Disponible', 'No disponible']},
+    {
+        sku: {
+            type: String,
+            trim: true,
+            unique: true,
+            uppercase: true
+        },
+        name: {
+            type: String,
+            trim: true
+        },
+        description: {
+            type: String,
+            trim: true
+        },
+        price: {
+            type: Number
+        },
+        available: {
+            type: Boolean,
+            default: true,
+        },
 
-},{
-    timestamps: true,
-    versionKey: false
+    },
+    {
+        timestamps: true,
+        versionKey: false
+    }    
 
-})
+);
 
+    
 export default model('product', productSchema);
