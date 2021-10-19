@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+import config from './config'
 
 
-mongoose.connect('mongodb+srv://mari_79:24657845P@cluster0.c72ae.mongodb.net/sales-control?retryWrites=true&w=majority', {
+mongoose.connect(config.DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
