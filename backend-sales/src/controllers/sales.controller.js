@@ -5,7 +5,7 @@ export const createSale = async (req, res) => {
     const sale = new Sale(req.body);
     try {
         await sale.save();
-        res.json({message: 'Se almacenó correctamente '});        
+        res.json({ message: '!Se almacenó correctamente '});        
     } catch (error) {
         if (error.code === 11000){
             res.status(400).json({
@@ -77,13 +77,14 @@ export const searchSalecode = async (req, res) => {
         });
     }
 };
-// Buscar venta por identificación del cliente
-export const searchIdentification = async (req, res) => {
+// Buscar venta por nombre del cliente
+export const searchCustomer = async (req, res) => {
 
     try {
         const sales = await Sale.find({
 
-            identification: new RegExp(req.params.query, 'i'),
+            customer: new RegExp(req.params.query, 'i') 
+            
         });
         res.json(sales);
     } catch (error) {
@@ -92,6 +93,8 @@ export const searchIdentification = async (req, res) => {
         });
     }
 };
+
+
 
 
 

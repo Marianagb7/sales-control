@@ -7,6 +7,15 @@ const saleSchema = new Schema (
             unique: true,
             uppercase:true,
         },
+        customer: {
+            type: String,
+            
+            
+        },
+        cardnumber: {
+            type: Number,
+            
+        },
         product: {
             type: String,
             
@@ -21,16 +30,7 @@ const saleSchema = new Schema (
         date: {
             type: String,
             
-        },
-        customer: {
-            type: String,
-            
-            
-        },
-        identification: {
-            type: Number,
-            
-        },
+        },        
         seller: {
             type: String,
             

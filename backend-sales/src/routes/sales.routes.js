@@ -8,22 +8,13 @@ router.post('/', salesCtrl.createSale)
 router.get('/', salesCtrl.getSales)
 
 router.get('/:saleId', salesCtrl.getSaleById)
-router.get('/search/:query', salesCtrl.searchSalecode)
-router.get('/search2/:query', salesCtrl.searchIdentification)
+router.get('/codesale/:query', salesCtrl.searchSalecode)
+router.get('/customer/:query', salesCtrl.searchCustomer)
+
 
 
 router.put('/:saleId', salesCtrl.updateSaleById)
 
 router.delete('/:saleId', salesCtrl.deleteSaleById)
-
-
-
-
-
-
-
-
-
-
 
 export default router;
