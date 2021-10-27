@@ -3,7 +3,9 @@ import cors from "cors";
 import morgan from "morgan";
 import pkg from '../package.json';
 import productsRoutes from './routes/products.routes';
+import salesRoutes from './routes/sales.routes';
 import authRoutes from './routes/auth.routes'
+
 
 
 
@@ -25,6 +27,7 @@ app.get('/',(req,res)=>{
     })
 })
 app.use('/api/products', productsRoutes);
+app.use('/api/sales', salesRoutes);
 app.use('/api/auth', authRoutes);
 
 export default app;
