@@ -1,15 +1,16 @@
 import Sale from '../models/Sale';
 
 //Registrar venta
-export const createSale = async (req, res) => {
+
+export const createSale = async (req, res) => {    
     const sale = new Sale(req.body);
     try {
         await sale.save();
-        res.json({ message: '!Se almacenó correctamente '});        
+        res.json({ message: '!Se almacenó correctamente' });        
     } catch (error) {
         if (error.code === 11000){
             res.status(400).json({
-                message: `Ya existe una venta con este código: ${req.body.salecode}`,
+                message: `Ya existe una venta con este identificador: ${req.body.code}`,
             });
         } else {
             res.status(400).json({
@@ -77,6 +78,7 @@ export const searchSalecode = async (req, res) => {
         });
     }
 };
+
 // Buscar venta por nombre del cliente
 export const searchCustomer = async (req, res) => {
 

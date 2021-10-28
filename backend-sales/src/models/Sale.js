@@ -1,51 +1,36 @@
 import { Schema, model } from "mongoose";
 
-const saleSchema = new Schema (
-    {
-        salecode: {
-            type: String,
-            unique: true,
-            uppercase:true,
+const saleSchema =  new Schema ({
+        code: {
+          type: String,
+          unique: true,
+          uppercase: true
+        },    
+       customer: {
+           type: String,
+           trim: true,
+        
         },
-        customer: {
-            type: String,
-            
-            
+        saller: {
+          type: String,
+          trim: true,        
         },
-        cardnumber: {
-            type: Number,
-            
-        },
-        product: {
-            type: String,
-            
-        },
-        amount: {
-            type: Number,
-            
-        },
-        unitprice: {
-            
-        },
-        date: {
-            type: String,
-            
-        },        
-        seller: {
-            type: String,
-            
-        },
-        state:{
-            type: String,
-            
-        },       
+        price: {
+           type: Number,
+          trim: true,
+        },   
+        
+          
+  },
 
-    },
     {
         timestamps: true,
         versionKey: false
-    }
+    }    
+
 );
+
+
 
 
 export default model('sale', saleSchema);
