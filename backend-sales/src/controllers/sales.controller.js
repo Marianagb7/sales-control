@@ -1,25 +1,19 @@
 import Sale from '../models/Sale';
 
-//Registrar venta
 
-export const createSale = async (req, res) => {    
-    const sale = new Sale(req.body);
+export const addSale = async (req, res) => {
+    const { salecode, customer, cardnumber, product, price, amount, seller, state} = req.body;
+
+    const newSale = new Sale({salecode, customer, cardnumber, product, price, amount, seller, state})
+
     try {
-        await sale.save();
-        res.json({ message: '!Se almacenó correctamente' });        
+        await newSale.save();
+        res.status(200).json(newSale);
     } catch (error) {
-        if (error.code === 11000){
-            res.status(400).json({
-                message: `Ya existe una venta con este identificador: ${req.body.code}`,
-            });
-        } else {
-            res.status(400).json({
-                message:'Error al procesar petición'
-            });
-        }
-    }       
-    
+        res.status(400).json( { message: "Error petición"});
+    }
 };
+
 
 //Listar ventas
 export const getSales = async (req, res) => {
