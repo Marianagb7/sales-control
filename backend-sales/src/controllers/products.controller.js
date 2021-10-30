@@ -21,7 +21,7 @@ export const createProduct = async (req, res) => {
 
 };
 
-// listar producto
+// listar productos
 
 export const getProducts = async (req, res) => {
     
