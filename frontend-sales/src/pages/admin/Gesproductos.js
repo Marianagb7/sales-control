@@ -1,16 +1,14 @@
-import ProductContextProvider from '../../contexts/ProdutContext';
+import React from 'react';
 import ProductList from '../../components/products/ProductList';
+
 
 
 
 const Gesproductos = () => {
     return (
         <div>
-            <p>Gestión de producto</p>
-            <ProductContextProvider>
-                <ProductList/>
-            </ProductContextProvider>
-
+            <ProductList></ProductList>
+            
         </div>        
     )
 }

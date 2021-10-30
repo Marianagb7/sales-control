@@ -1,30 +1,45 @@
-import React,  { useContext, useState } from "react";
-import { Panel } from "primereact/panel";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { ProductContext } from "../../contexts/ProdutContext";
+import React from "react";
+import { Table } from "reactstrap";
 
-
-const ProductList = () => {
-    
+const ProductList = () => {  
 
   
-
     
     return (
         <div>
-            <Panel header = "LISTA DE PRODUCTOS" style={{ textAlign: "center" }}>
-                <DataTable>
-                    
-                    <Column field="_id" header="Id"/>
-                    <Column field="sku" header="Sku"/>
-                    <Column field="name" header="Nombre"/>
-                    <Column field="description" header="Descripción"/>
-                    <Column field="price" header="Precio"/>
-                    <Column field="avaible" header="Estado"/>
-                </DataTable>
-
-            </Panel>
+            
+            <Table striped bordered hover size="sm">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Sku</th>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Precio</th>
+      <th>Estado</th>
+      <th>Fecha de actualización</th>
+      <th>Actualizar</th>
+      <th>Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    
+    
+  </tbody>
+</Table>
+             
+            
 
         </div>
     );
