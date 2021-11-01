@@ -3,7 +3,6 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import ModalProduct from "./ModalProduct";
 
 import { Table } from "reactstrap";
 
@@ -59,7 +58,7 @@ axios.get(url).then(response => {
 
           </tbody>
         </Table>
-        <ModalProduct></ModalProduct>
+        
         
       </div>
 

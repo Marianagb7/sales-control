@@ -16,15 +16,17 @@ const ModalProduct = () => {
                         <input className="form-control" type="text" name="sku"id="sku" readOnly
                         onChange={this.handleChange} />
                         <label htmlFor="nombre">Nombre</label>
-                        <input className="form-control" type="text" name="name" id="name" />
+                        <input className="form-control" type="text" name="name" id="name" onChange={this.handleChange}
+                         />
                         <br/>
                         <label htmlFor="descripcion">Descripción</label>
                         <input className="form-control" 
-                        type="text" name="descripcion" id="description"/>
+                        type="text" name="descripcion" id="description" onChange={this.handleChange}
+                        />
                         <br/>
                         <label htmlFor="precio">Precio</label>
                         <input className="form-control" type="number"
-                        name="price" id="price"></input>
+                        name="price" id="price" onChange={this.handleChange}></input>
                         <br/>
                         <label htmlFor="estado">Estado</label>
                         <select name="available">

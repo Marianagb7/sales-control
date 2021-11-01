@@ -1,7 +1,8 @@
 const Home = () => {
     return (
-        <div>
-            
+
+        <div>            
+            <p>Registro Producto</p>
             
 
         </div>        

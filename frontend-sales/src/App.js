@@ -10,8 +10,6 @@ import Regventas from './pages/admin/Regventas';
 import Gesventas from './pages/admin/Gesventas'
 import './styles/App.scss';
 
-
-
 function App() {
   return (    
     <Router>
