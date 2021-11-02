@@ -1,11 +1,13 @@
+import React from 'react';
+
 
 const Regproducto = () => {
     return (
 
-        <div>            
-            <p>Registro Producto</p>
+        <div> 
+              
+        
             
-
         </div>        
     )
 }

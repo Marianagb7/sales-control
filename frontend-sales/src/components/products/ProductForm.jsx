@@ -2,7 +2,12 @@ import React from 'react';
 
 const ProductForm = () => {
     return (
-        <h1> soy formulario</h1>
+
+        <div className="form-group">
+            <label htmlForm="sku">Sku</label>
+            <input className="form-control" type="text" />
+
+        </div>
     )
 };
 export default ProductForm;
