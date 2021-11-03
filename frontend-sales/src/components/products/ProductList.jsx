@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import axios from "axios";
+import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -7,71 +8,84 @@ import { Table } from "reactstrap";
 import { Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
 
 const url = "http://localhost:4000/api/products"
+// Endpoints conecxión cliente-servidor
 class ProductLIst extends Component  {
-state = {
-  data: [],
-  modalInsertar: false,  
-}
-
-peticionGet = () => {
-axios.get(url).then(response => {
-  this.setState({data: response.data});
-}).catch(error=>{
-  console.log(error.message);
-})
-}
-
-peticionPost=async() =>{  
-  await axios.post(url,this.state.form).then(reponse=>{
-    this.modalInsertar();
-    this.peticionGet();
-  }).catch(error=>{
-    console.log(error.message);
-  })
-}
-
-peticionPut=()=>{
-  axios.put(url+"/"+this.state.form._id, this.state.form).then(reponse=>{
-    this.modalInsertar();
-    this.peticionGet();
-  })
-}
-
-modalInsertar = () => { 
-  this.setState({modalInsertar: !this.state.modalInsertar});
-}
-
-seleccionarProduct=(product)=>{
-  this.setState({
-    form: {
-      _id: product._id,
-      sku: product.sku,
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      available: product.available
-    }
-  })
-}
-
-handleChange =async e=> {
-e.persist();
-await this.setState({
-  form:{
-    ...this.state.form,
-    [e.target.name]: e.target.value
+  state = {
+    data: [],
+    modalInsertar: false,
+    modalEliminar: false, 
+    tipoModal: false, 
   }
-});
-console.log(this.state.form);
-}
+// Listar productos
+  peticionGet = () => {
+    axios.get(url).then(response => {
+      this.setState({data: response.data});
+      }).catch(error=>{
+        console.log(error.message);
+     })
+  }
+// Actualizar producto
+  peticionPut=()=>{
+    axios.put(url+"/"+this.state.form._id, this.state.form).then(reponse=>{
+      this.modalInsertar();
+      this.peticionGet();
+   })
+  }
+// Eliminar producto
+  peticionDelete=()=>{
+    axios.delete(url+"/"+this.state.form._id).then(response=>{
+      this.setState({modalEliminar:false});
+      this.peticionGet();
+    })
+  }  
+ 
+
+  modalInsertar = () => {
+    this.setState({modalInsertar: !this.state.modalInsertar});
+  }
+
+  seleccionarProduct=(product)=>{
+    this.setState({
+      form: {
+        _id: product._id,
+        sku: product.sku,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        available: product.available
+      }
+    })
+  }
+
+  handleChange =async e=> {
+    e.persist();
+    await this.setState({
+      form:{
+        ...this.state.form,
+        [e.target.name]: e.target.value
+      }
+    });
+     console.log(this.state.form);
+  }
+  alertUpGrade=()=>{
+    swal({
+      title:"Proceso exitoso",
+      text: "Se actualizo correctamente",
+      icon: "info",
+      button: "Aceptar",
+      timer: "3000"
+    })
+  }
+
+
   componentDidMount () {
     this.peticionGet();
 
   }
   render () {
-    const {form}=this.state;
-        
+    const {form}=this.state;        
     return (
+      // Tabla listar productos
       <div>
         <Table striped bordered hover size="sm">
           <thead className="text-center">
@@ -107,9 +121,10 @@ console.log(this.state.form);
 
           </tbody>
         </Table>
+        
         <Modal isOpen={this.state.modalInsertar}>
                 <ModalHeader style={{display: 'block'}}>
-                    <span style={{float: 'right'}}>x</span>
+                    <span style={{float: 'right'}}>!!Puedes actualizar</span>
                 </ModalHeader>
                 <ModalBody>
                     <div className="form-group">                               
@@ -138,17 +153,22 @@ console.log(this.state.form);
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                  {this.state.tipoModal ==='insertar'?
-                    <button className="btn btn-success" onClick={()=>this.peticionPost()}>
-                    Insertar
-                    </button>: <button className="btn btn-primary" onClick={()=>this.peticionPut()}>
+                  <button className="btn btn-primary" onClick={()=>{this.peticionPut(); this.alertUpGrade()}}>
                     Actualizar
-                    </button>                    
-                  }
-
+                    </button>                 
                   <button className="btn btn-danger" onClick={()=>this.modalInsertar()}>Cancelar</button>
                 </ModalFooter>
-            </Modal>     
+            </Modal>
+            <Modal isOpen={this.state.modalEliminar}>
+              <ModalBody>
+                 Estás seguro que deseas eliminar este producto {form && form.sku}
+              </ModalBody>
+              <ModalFooter>
+                <button className="btn btn-danger" onClick={()=>this.peticionDelete()}>Sí</button>
+                <button className="btn btn-secundary" onClick={()=>this.setState({modalEliminar: false})}>No</button>
+              </ModalFooter>            
+              
+            </Modal>    
                 
       </div>
 
