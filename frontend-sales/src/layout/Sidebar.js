@@ -5,8 +5,9 @@ import Logo from "../assets/logo.jpg";
 const Sidebar = () => {
     return (
         
+        
         <div className='sidebar bg.light'>
-            
+                        
             <div className="brand" >                
                 <img src= {Logo}   alt=""/>
                                 
@@ -15,11 +16,14 @@ const Sidebar = () => {
                 <h3> Ebro vinos</h3>
             </div>
             <ul>
+                               
+                               
                 <li>
                     <NavLink to ="/" exact className="text-light rounded py-2 w-100
                      d-inline-block px-3 "  activeClassName="active"><FaIcons.FaTachometerAlt
                       className="me-2 "/>Dashboard</NavLink>
                 </li>
+                
                 <li>
                     <NavLink to="/usuarios" exact className="text-light rounded py-2 w-100
                      d-inline-block px-3" activeClassName="active"><FaIcons.FaUsersCog 

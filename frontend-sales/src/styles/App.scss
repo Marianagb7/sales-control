@@ -28,7 +28,7 @@ $cyan:#dfa017;
     
     background-color: $gray;
     width: 20rem;
-    height: calc(100vh - 53px);
+    height: calc(100vh - 2px);
     border-right: 1px solid $gray;
     .brand {
         cursor: pointer;
@@ -57,5 +57,12 @@ $cyan:#dfa017;
     }
 }
 
+.form1 {
+    width: 95%;
+    height: 80%;
+    background-color: $light;
+    margin: 0.5rem 2rem;
+         
+}
 
 
