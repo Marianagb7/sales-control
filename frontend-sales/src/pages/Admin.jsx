@@ -1,7 +1,13 @@
 import React from 'react';
 
+
 const Admin = ()=> {
-    return <div>Pagina para administración</div>
+
+    return(
+        <div>Pagina para administración</div>
+
+    )
+     
 };
 
 

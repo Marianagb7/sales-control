@@ -4,9 +4,9 @@ import Navbar from '../components/Navbar';
 
 const PublictLayout = ({ children })=> {
     return (
-        <div>
-            <Navbar/>
-            <main>{children}</main>
+        <div className="flex-column justify-content-between">
+            <Navbar/>            
+            <main>{children}</main>            
             <Footer/>
 
         </div>
