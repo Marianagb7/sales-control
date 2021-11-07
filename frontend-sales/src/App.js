@@ -1,36 +1,48 @@
 import React from 'react';
-import PublictLayout from './layout/PublictLayout.jsx';
-import Login from './pages/Login.jsx';
-import Registro from './pages/Registro';
-import Admin from './pages/Admin.jsx';
-import Index from './pages/Index'
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import PrivateLayout from './layout/PrivateLayout';
+import PublictLayout from './layout/PublictLayout';
+import Admin from './pages/Admin';
+import Login from './pages/Login';
+import Index from './pages/Index'
+import Productos from './pages/admin/Productos';
 import './styles/App.scss';
 
 function App() {
   return (    
     <Router>
       <Switch>
-        <Route path='/login'>
-          <Login/>
+        <Route path={['/admin', '/admin/productos']}>
+          <PrivateLayout>
+            <Switch>
+              <Route path='/admin/productos'>
+                <Productos/>
+              </Route>
+              <Route path='/admin'>
+                <Admin/>
+              </Route>
+            </Switch>
+          </PrivateLayout>
         </Route>
-        <Route path='/registro'>
-          <Registro/>
-        </Route>
-        <Route path='/admin'>
-          <Admin/>
-        </Route>
-        <Route path='/'>
+        <Route path={['/login']}> 
+        <Switch>
+          <Route path='/login'>
+            <Login/> 
+          </Route>  
+        </Switch> 
+        </Route>                       
+        <Route path={['/']}>
           <PublictLayout>
-          <Index/>
-        </PublictLayout>
-          
-        </Route>
+            <Route path='/'>
+            <Index/>
+            </Route>
+         </PublictLayout>
+        </Route>        
+               
       </Switch>
-    </Router>
-    
-    
+    </Router>     
+        
+        
   );
 }
 
