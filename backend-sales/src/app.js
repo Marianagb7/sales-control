@@ -45,5 +45,4 @@ app.get('/',(req,res)=>{
 app.use('/api/products', productsRoutes);
 app.use('/api/sales', salesRoutes);
 
-
 export default app;
