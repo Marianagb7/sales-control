@@ -1,12 +1,12 @@
 import React from "react";
 
-const Gesventas = () => {
+const Ventas = () => {
     return (
         <div>
-            <p>Gesventas</p>
+            <p>Ventas</p>
 
         </div>        
     )
 }
 
-export default Gesventas;
+export default Ventas;

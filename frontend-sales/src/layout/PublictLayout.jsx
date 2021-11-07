@@ -1,6 +1,6 @@
 import React from 'react';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
+import Footer from '../layout/publictlayaut/Footer';
+import Navbar from '../layout/publictlayaut/Navbar';
 
 const PublictLayout = ({ children })=> {
     return (
