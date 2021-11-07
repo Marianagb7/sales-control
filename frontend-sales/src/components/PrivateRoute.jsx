@@ -3,12 +3,18 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 const PrivateRoute = ({children}) => {
-    const { isAuthenticated, isLoading} = useAuth0();
+    const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
 
     if (isLoading) return <div>Loading...</div>;
-    return isAuthenticated ? (
-        <>{children}</>
-    ):(
+
+    if (!isAuthenticated){
+        return loginWithRedirect();
+    }
+
+    return <>{children}</>;
+    };
+
+    /*
         <div>
             <div>
                 No estas autorizado para ver este sitio
@@ -22,6 +28,6 @@ const PrivateRoute = ({children}) => {
         </div>
     
     )
-}
+}*/
 
 export default PrivateRoute

@@ -44,7 +44,7 @@ function App() {
               </Route>
             </PublictLayout>
           </Route>        
-                
+        
         </Switch>
       </Router>
     </Auth0Provider>     
