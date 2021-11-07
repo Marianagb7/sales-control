@@ -1,7 +1,10 @@
 import React from 'react';
 
+
+
 const Login = ()=> {
-    return <div>Pagina para el login</div>
+    
+    return <div>Soy login</div>
 };
 
 

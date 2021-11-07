@@ -1,53 +1,48 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PrivateLayout from './layout/AuthLayout';
+import PrivateLayout from './layout/PrivateLayout';
 import PublictLayout from './layout/PublictLayout';
-import AuthLayout from './layout/AuthLayout';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
-import Registro from './pages/Registro'
 import Index from './pages/Index'
+import Productos from './pages/admin/Productos';
 import './styles/App.scss';
 
 function App() {
-  return (  
+  return (    
     <Router>
       <Switch>
-        <Route path={['/admin']}>
+        <Route path={['/admin', '/admin/productos']}>
           <PrivateLayout>
             <Switch>
+              <Route path='/admin/productos'>
+                <Productos/>
+              </Route>
               <Route path='/admin'>
                 <Admin/>
               </Route>
             </Switch>
           </PrivateLayout>
         </Route>
-        <Route path={['/login', '/registro']}>
-          <AuthLayout>
-            <Switch>
-              <Route path='/login'>
-                <Login/>
-              </Route>
-              <Route path='/registro'>
-                <Registro/>
-              </Route>
-            </Switch>
-          </AuthLayout>
-        </Route>
+        <Route path={['/login']}> 
+        <Switch>
+          <Route path='/login'>
+            <Login/> 
+          </Route>  
+        </Switch> 
+        </Route>                       
         <Route path={['/']}>
           <PublictLayout>
-            <Switch>
-              <Route path='/'>
-                <Index/>
-              </Route>
-            </Switch>
-          </PublictLayout>
-        </Route>
+            <Route path='/'>
+            <Index/>
+            </Route>
+         </PublictLayout>
+        </Route>        
+               
       </Switch>
-    </Router>  
-    
-    
-    
+    </Router>     
+        
+        
   );
 }
 
