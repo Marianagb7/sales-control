@@ -11,12 +11,15 @@ import {
   DropdownItem,
   
 } from 'reactstrap';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const NavbarNav = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+
+  const { logout } = useAuth0();
 
   return (
     <div>
@@ -38,7 +41,9 @@ const NavbarNav = (props) => {
                   Configuraciones
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>
+                <DropdownItem
+                  onClick={() => logout({ returnTo: window.location.origin })}
+                >
                   Cerrar Sesión
                 </DropdownItem>
               </DropdownMenu>
