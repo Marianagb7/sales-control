@@ -1,11 +1,32 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { useEffect} from 'react';
+import { Spinner } from 'reactstrap';
 
 const PrivateRoute = ({children}) => {
-    const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+    const { isAuthenticated, isLoading, loginWithRedirect, getAccessTokenSilently } = useAuth0();
 
-    if (isLoading) return <div>Loading...</div>;
+    useEffect(() => {
+
+        const fetchAuth0Token = async ()=>{
+            const accesToken = await getAccessTokenSilently({
+            audience: 'api-autenticacion-appventas-mintic',
+        });
+        localStorage.setItem("token", accesToken);
+        }
+        if (isAuthenticated){
+            fetchAuth0Token();
+        }
+    }, [isAuthenticated, getAccessTokenSilently]);
+
+    if (isLoading) 
+        return (
+            <Spinner
+                color="secondary"
+                size="sm"
+            >
+            ...
+            </Spinner>
+        );
 
     if (!isAuthenticated){
         return loginWithRedirect();
@@ -14,20 +35,4 @@ const PrivateRoute = ({children}) => {
     return <>{children}</>;
     };
 
-    /*
-        <div>
-            <div>
-                No estas autorizado para ver este sitio
-            </div>
-            <Link to='/'>
-                <span className="text-blue-500 font">
-                    Llévame al Home
-                </span>
-            </Link>
-            
-        </div>
-    
-    )
-}*/
-
-export default PrivateRoute
+export default PrivateRoute;

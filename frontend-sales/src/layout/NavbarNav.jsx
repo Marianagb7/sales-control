@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Collapse,
   Navbar,
@@ -19,19 +19,26 @@ const NavbarNav = (props) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
-  const { logout } = useAuth0();
+  const { user, logout } = useAuth0();
+  
+  const cerrarSesion = () => {
+    logout({ returnTo: 'localhost:3000/login' });
+    localStorage.setItem('token',null);
+  };
 
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Gestión de ventas</NavbarBrand>
+        <NavbarBrand href="/">
+          Gestión de ventas
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>            
-            
+
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Camila Bejarano
+                <Ruta usuario={user}/>
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
@@ -42,7 +49,7 @@ const NavbarNav = (props) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem
-                  onClick={() => logout({ returnTo: window.location.origin })}
+                  onClick={() => cerrarSesion()}
                 >
                   Cerrar Sesión
                 </DropdownItem>
@@ -55,5 +62,29 @@ const NavbarNav = (props) => {
     </div>
   );
 }
+
+const Ruta = ({ usuario }) => {
+  console.log('usuario', usuario);
+  return (
+    <div>
+        {usuario ? (
+      <>
+        <img 
+          src={usuario.picture} 
+          className="rounded-circle" 
+          height="30cm" 
+          weight="30cm" 
+          alt="foto de perfil"
+        />
+        {usuario.name}
+      </>
+      ) : (
+        <>
+        </>
+      )}
+
+    </div>
+    );
+  };
 
 export default NavbarNav;
