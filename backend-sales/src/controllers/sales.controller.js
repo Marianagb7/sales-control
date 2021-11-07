@@ -1,18 +1,16 @@
 import Sale from '../models/Sale';
 
-
-export const addSale = async (req, res) => {
-    const { salecode, customer, cardnumber, product, price, amount, seller, state} = req.body;
-
-    const newSale = new Sale({salecode, customer, cardnumber, product, price, amount, seller, state})
-
+export const createSale = async (req, res) => {
+    const sale = new Sale(req.body);
     try {
-        await newSale.save();
-        res.status(200).json(newSale);
+        await sale.save();
+        res.json({ message: '!Se almacenó correctamente' });
     } catch (error) {
-        res.status(400).json( { message: "Error petición"});
-    }
+        
+    }    
+
 };
+
 
 
 //Listar ventas

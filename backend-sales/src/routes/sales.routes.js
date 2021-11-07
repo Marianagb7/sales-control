@@ -2,7 +2,7 @@ import { Router } from 'express';
 import *as salesCtrl from '../controllers/sales.controller';
 const router = Router()
 
-router.post('/', salesCtrl.addSale)
+router.post('/', salesCtrl.createSale)
 
 router.get('/', salesCtrl.getSales)
 

@@ -6,6 +6,10 @@ const saleSchema = new Schema ({
           unique: true,
           uppercase: true
         },
+        date: {
+          type: String,
+          trim: true,
+        },
         customer: {
           type: String,
           trim: true
@@ -18,11 +22,11 @@ const saleSchema = new Schema ({
           type: String,
           trim: true
         },
-        price: {
+        amount: {
           type: Number,
           trim: true
         },
-        amount: {
+        unitprice: {
           type: Number,
           trim: true
         },
