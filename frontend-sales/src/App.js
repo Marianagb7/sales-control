@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PrivateLayout from './layout/PrivateLayout';
 import PublictLayout from './layout/PublictLayout';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
@@ -20,16 +19,14 @@ function App() {
       <Router>
         <Switch>
           <Route path={['/admin', '/admin/productos']}>
-            <PrivateLayout>
-              <Switch>
-                <Route path='/admin/productos'>
-                  <Productos/>
-                </Route>
-                <Route path='/admin'>
-                  <Admin/>
-                </Route>
-              </Switch>
-            </PrivateLayout>
+            <Switch>
+              <Route path='/admin/productos'>
+                <Productos/>
+              </Route>
+              <Route path='/admin'>
+                <Admin/>
+              </Route>
+            </Switch>
           </Route>
           <Route path={['/login']}> 
           <Switch>
