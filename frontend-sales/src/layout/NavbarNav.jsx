@@ -22,8 +22,8 @@ const NavbarNav = (props) => {
   const { user, logout } = useAuth0();
   
   const cerrarSesion = () => {
-    logout({ returnTo: 'localhost:3000/login' });
-    localStorage.setItem('token',null);
+    logout({ returnTo: window.location.origin });
+    localStorage.setItem('token', null);
   };
 
   return (
@@ -48,9 +48,7 @@ const NavbarNav = (props) => {
                   Configuraciones
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem
-                  onClick={() => cerrarSesion()}
-                >
+                <DropdownItem onClick={() => cerrarSesion()}>
                   Cerrar Sesión
                 </DropdownItem>
               </DropdownMenu>
