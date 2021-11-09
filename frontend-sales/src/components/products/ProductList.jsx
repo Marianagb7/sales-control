@@ -70,7 +70,7 @@ class ProductLIst extends Component  {
   alertUpGrade=()=>{
     swal({
       title:"Proceso exitoso",
-      text: "Se actualizo correctamente",
+      text: "Se actualizó correctamente",
       icon: "info",
       button: "Aceptar",
       timer: "3000"
