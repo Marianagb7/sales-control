@@ -106,15 +106,14 @@ function ProductForm () {
                 </FormGroup>
                 <FormGroup>
                     <Label className="fs-4 fw-bolder" htmlFor="nombre">Estado</Label>
-                    <select className="form-control border-warning"
-                        type={"select"}
-                        name="available"
-                        id="available"
-                        onChange={(e)=>handle(e)}
-                        value={data.available}>                            
-                        <option value={"Disponible"}>Disponible</option>
-                        <option value={"No Disponible"}>No Disponible</option>
-                    </select>              
+                    <Input className="form-control border-warning"
+                      type="text"
+                      name="available"
+                      id="available"
+                      placeholder="Disponible"
+                      onChange={(e)=>handle(e)}
+                      value={data.available}                   
+                    />             
                 </FormGroup>
                 <br/>
                 <div className="col text-center">

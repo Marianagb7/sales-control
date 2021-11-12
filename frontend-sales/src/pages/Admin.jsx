@@ -1,10 +1,14 @@
 import React from 'react';
 
 
+
+
 const Admin = ()=> {
 
     return(
-        <div>Pagina para administración</div>
+        <div>
+            
+        </div>
 
     )
      
