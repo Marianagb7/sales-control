@@ -102,9 +102,3 @@ export const searchCustomer = async (req, res) => {
 
 
 
-
-
-
-
-
-
