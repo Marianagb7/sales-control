@@ -1,16 +1,28 @@
 import Sale from '../models/Sale';
 
 export const createSale = async (req, res) => {
-    const sale = new Sale(req.body);
+    const { salecode, customer, cardnumber, product, amount, unitprice, seller, state } = req.body;
+  
     try {
-        await sale.save();
-        res.json({ message: '!Se almacenó correctamente' });
+      const newSale = new Sale({
+        salecode,
+        customer,
+        cardnumber,
+        product,
+        amount,
+        unitprice,
+        seller,
+        state
+      });
+  
+      const saleSaved = await newSale.save();
+  
+      res.status(201).json(saleSaved);
     } catch (error) {
-        
-    }    
-
+      console.log(error);
+      return res.status(500).json(error);
+    }
 };
-
 
 
 //Listar ventas
@@ -87,12 +99,6 @@ export const searchCustomer = async (req, res) => {
         });
     }
 };
-
-
-
-
-
-
 
 
 
