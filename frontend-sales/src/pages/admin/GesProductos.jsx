@@ -14,9 +14,4 @@ const Gesproductos = () => {
             
              
             
-            
-                
-    
-
-
 export default Gesproductos;

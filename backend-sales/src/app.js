@@ -4,10 +4,10 @@ import morgan from "morgan";
 import pkg from '../package.json';
 import productsRoutes from './routes/products.routes';
 import salesRoutes from './routes/sales.routes';
-import jwt from 'express-jwt';
-import jwks from 'jwks-rsa';
+//import jwt from 'express-jwt';
+//import jwks from 'jwks-rsa';
 
-var jwtCheck = jwt({
+/*var jwtCheck = jwt({
     secret: jwks.expressJwtSecret({
         cache: true,
         rateLimit: true,
@@ -17,7 +17,7 @@ var jwtCheck = jwt({
   audience: 'api-autenticacion-appventas-mintic',
   issuer: 'https://misiontic-appventas.us.auth0.com/',
   algorithms: ['RS256']
-});
+});*/
 
 
 const app = express()
@@ -27,7 +27,7 @@ app.set('pkg', pkg);
 app.use(morgan('dev'));
 app.use(express. json());
 app.use(cors());
-app.use(jwtCheck);
+//app.use(jwtCheck);
 
 
 
