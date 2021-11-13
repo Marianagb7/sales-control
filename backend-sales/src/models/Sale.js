@@ -2,41 +2,32 @@ import {Schema, model} from 'mongoose';
 
 const saleSchema = new Schema ({
         salecode: {
-          type: String,
-          unique: true,
-          uppercase: true
+          type: String,          
         },
-        date: {
-          type: String,
-          trim: true,
-        },
-        customer: {
-          type: String,
-          trim: true
-        },
+       date:{
+        type:String,
+       },
+       customer: {
+          type: String,          
+       },
         cardnumber: {
-          type: Number,
-          trim: true
+          type: Number,          
         },
         product:{
-          type: String,
-          trim: true
+          type: String,          
         },
         amount: {
-          type: Number,
-          trim: true
+          type: Number,          
         },
         unitprice: {
-          type: Number,
-          trim: true
+          type: Number,          
         },
         seller: {
-          type: String,
-          trim: true
+          type: String,          
         },
         state: {
           type: String,
-          trim: true
+          
         },   
 
     },
