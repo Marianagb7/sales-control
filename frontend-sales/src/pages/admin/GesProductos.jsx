@@ -3,15 +3,20 @@ import ProductList from '../../components/products/ProductList';
 
 const Gesproductos = () => {
     return (
-        <div className="prueba">
-            <div> 
-                <h5>Busqueda de producto por SKU</h5>                
-            </div>
-            <br/> 
+        <div className="tablelist">
+           <h2 className=
+           " fw-bold text-secondary text-center ">
+            Gestiona Productos!!</h2> 
             <ProductList/>
+       </div>
+    )        
+}                          
             
-        </div>        
-    )
-}
+             
+            
+            
+                
+    
+
 
 export default Gesproductos;
