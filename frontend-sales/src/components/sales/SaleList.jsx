@@ -1,10 +1,13 @@
 import React, { useState, useEffect} from 'react';
 import axios from "axios";
+import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Table } from "reactstrap";
 import { Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
+
 
 
 function SaleList(){
@@ -15,6 +18,7 @@ function SaleList(){
     const [tablesales, setTablesales]=useState([]);
     const [search, setSearch]=useState("");
     const [modalEdit, setModalEdit]=useState(false);
+    const [modalDelete, setModalDelete]= useState(false);
     const [saleSelected, setSaleSelected]=useState({
         _id: "",
         salecode: "",
@@ -35,6 +39,16 @@ function SaleList(){
             console.log(error);
         })
     }
+
+    const alertUpGrade=()=>{
+        swal({
+          title:"Proceso exitoso",
+          text: "Se actualizó correctamente",
+          icon: "info",
+          button: "Aceptar",
+          timer: "10000"
+        })
+    } 
 
     const peticionPut=async()=>{
         await axios.put(url+"/"+saleSelected._id, saleSelected)
@@ -58,7 +72,17 @@ function SaleList(){
         }).catch(error=>{
           console.log(error);
         })
-      }
+    }
+
+    const peticionDelete=async()=>{
+        await axios.delete(url+"/"+saleSelected._id)
+        .then(response=>{
+          setTablesales(tablesales.filter(sales=>sales.id!==saleSelected._id));
+          openClosedModalDelete();
+        }).catch(error=>{
+          console.log(error);
+        })
+    }
 
       
 
@@ -80,10 +104,17 @@ function SaleList(){
 
     const selectSale=(sales, caso)=>{
         setSaleSelected(sales);
-        (caso === "editar")&&setModalEdit(true)
+        (caso === "editar")?openClosedModalEdit()
+        :
+        openClosedModalDelete()
     }
+    
     const openClosedModalEdit=()=>{
         setModalEdit(!modalEdit);
+    }
+
+    const openClosedModalDelete=()=>{
+        setModalDelete(!modalDelete);
     }
 
     const handleChange=e=>{
@@ -113,8 +144,8 @@ function SaleList(){
             </div>
             <div className="tabla">
                 <Table striped bordered hover size="sm">
-                    <thead className="text-center">
-                        <tr>             
+                    <thead className="text-center text-start">
+                        <tr className="lead text-center  fs-5 h4">             
                             <th className="col-sm-1">Código</th>
                             <th className="col-sm-1">Fecha</th>
                             <th className="col-sm-1">Cliente</th>
@@ -130,21 +161,25 @@ function SaleList(){
 
                     <tbody>
                         {sales && sales.map((sales)=>(
-                            <tr key={sales.salecode}>
-                                <td>{sales.salecode}</td>
-                                <td>{sales.createdAt}</td>
-                                <td>{sales.customer}</td>
-                                <td>{sales.cardnumber}</td>
-                                <td>{sales.product}</td>
-                                <td>{sales.amount}</td>
-                                <td>{sales.unitprice}</td>
-                                <td>{sales.seller}</td>
-                                <td>{sales.state}</td>
+                            <tr className="lead text-center  fs-5 h4" key={sales.salecode}>
+                                <td className=" fs-6 fw-bold" >{sales.salecode}</td>
+                                <td className="fw-normal text-center">{sales.createdAt}</td>
+                                <td className="fw-normal text-center">{sales.customer}</td>
+                                <td className="fw-normal text-center">{sales.cardnumber}</td> 
+                                <td className="fw-normal text-center">{sales.product}</td>
+                                <td className="fw-normal text-center">{sales.amount}</td>
+                                <td className="fw-normal text-center">{new Intl.NumberFormat("en-En").format(sales.unitprice)}</td>
+                                <td className="fw-normal text-center">{sales.seller}</td>
+                                <td className="fw-normal text-center">{sales.state}</td>
                                 <td> 
 
-                                 <button className="btn btn-warning" onClick={()=>{selectSale(sales, 'editar');openClosedModalEdit()}}>Editar</button>
+                                 <button className="btn btn-warning"
+                                  onClick={()=>selectSale(sales, 'editar')}>
+                                      < FontAwesomeIcon icon={faEdit}/></button>
                                  {"   "}                                  
-                                 <button className="btn btn-dark">Eliminar</button>                    
+                                 <button className="btn btn-dark" 
+                                 onClick={()=>selectSale(sales, 'eliminar')}>
+                                <FontAwesomeIcon icon={faTrashAlt}/></button>                    
                                 </td>
                             </tr>
                         ))}
@@ -160,7 +195,8 @@ function SaleList(){
                                   
                         <label htmlFor="salecode">Código</label>
                         <input className="form-control" type="text" name="salecode"id="salecode" readOnly
-                        value={saleSelected.salecode}    />
+                        value={saleSelected && saleSelected.salecode}
+                        onChange={handleChange}    />
                         <label htmlFor="cliente">Cliente</label>
                         <input className="form-control" type="text" name="customer" id="customer"
                         value={saleSelected && saleSelected.customer} 
@@ -209,12 +245,21 @@ function SaleList(){
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                  <button className="btn btn-primary" onClick={()=>peticionPut()} >
+                  <button className="btn btn-primary" onClick={()=>{peticionPut(); alertUpGrade()}} >
                     Actualizar
                     </button>                 
                   <button className="btn btn-danger"onClick={()=>setModalEdit(false)} >Cancelar</button>
                 </ModalFooter>
-            </Modal>
+                </Modal>
+                <Modal isOpen={modalDelete}>
+                  <ModalBody>
+                       Estás seguro que deseas eliminar esta venta {saleSelected && saleSelected.salecode}
+                   </ModalBody>
+                    <ModalFooter>
+                       <button className="btn btn-danger" onClick={()=>peticionDelete()}>Sí</button>
+                       <button className="btn btn-secundary" onClick={()=>setModalDelete()} >No</button>
+                    </ModalFooter>        
+                </Modal>
             </div>
         </div>
     )

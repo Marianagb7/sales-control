@@ -4,7 +4,7 @@ import SaleList from "../../components/sales/SaleList";
 const Gesventas = () => {
     return (
         <div>
-            <p>Gesventas</p>
+            <p className="fw-bold text-center fs-4">Gestión de ventas!!</p>
             <SaleList/>
 
         </div>        
