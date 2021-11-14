@@ -20,7 +20,7 @@ function App() {
     <Auth0Provider
       domain="misiontic-appventas.us.auth0.com"
       clientId="hD6ENm2krarGEQqipTyNHig7qEfm3m4x"
-      redirectUri="https://ebrovinos-misiontic.herokuapp.com/admin"
+      redirectUri="https://localhost:3000/admin"
       audience= 'api-autenticacion-appventas-mintic'
     >
       <Router>
