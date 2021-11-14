@@ -9,7 +9,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
 
 
 
-const url = "https://ebrovinos-misiontic.herokuapp.com/api/users";
+const url = "https://localhost:3000";
 
 class UsersList extends Component  {  
   state = {
