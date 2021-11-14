@@ -9,7 +9,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
 
 
 
-const url = "https://ebrovinos-misiontic.herokuapp.com/api/products";
+const url = "https://localhost:3000";
 
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
