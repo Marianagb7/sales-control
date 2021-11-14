@@ -29,13 +29,8 @@ app.set('pkg', pkg);
 app.use(morgan('dev'));
 app.use(express. json());
 app.use(cors());
-<<<<<<< HEAD
-app.use(jwtCheck);
 
-
-=======
 //app.use(jwtCheck);
->>>>>>> e992176186799498250e9924e6507a23e99ad272
 
 app.get('/',(req,res)=>{
     res.json({
