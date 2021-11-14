@@ -5,27 +5,21 @@ const userSchema = new Schema(
     {
         username: {
             type: String,
-            unique: true
         },
         name: {
             type: String,
-            unique: true
         },
         lastname: {
             type: String,
-            unique: true
         },
         password: {
             type: String,
-            required: true
         },
         identification: {
             type:Number,
-            unique: true
         },
         phone: {
             type: Number,
-            unique: true
         },
         email: {
             type: String,
@@ -39,7 +33,6 @@ const userSchema = new Schema(
         ],
         state: {
             type: String,
-            unique: true
         }
     }, {
         timestamps: true,

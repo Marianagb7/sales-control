@@ -25,15 +25,15 @@ class ProductLIst extends Component  {
      })
   }
 // Actualizar producto
-  peticionPut=()=>{
-    axios.put(url+"/"+this.state.form._id, this.state.form).then(reponse=>{
+  peticionPatch=()=>{
+    axios.patch(url+"/${producto._id}"+this.state.form._id, this.state.form).then(reponse=>{
       this.modalInsertar();
       this.peticionGet();
    })
   }
 // Eliminar producto
   peticionDelete=()=>{
-    axios.delete(url+"/"+this.state.form._id).then(response=>{
+    axios.delete(url+"/${producto._id}"+this.state.form._id).then(response=>{
       this.setState({modalEliminar:false});
       this.peticionGet();
     })
@@ -124,7 +124,7 @@ class ProductLIst extends Component  {
         
         <Modal isOpen={this.state.modalInsertar}>
                 <ModalHeader style={{display: 'block'}}>
-                    <span style={{float: 'right'}}>!!Puedes actualizar</span>
+                    <span style={{float: 'right'}}>¡Actualizar Producto!</span>
                 </ModalHeader>
                 <ModalBody>
                     <div className="form-group">                               
@@ -153,7 +153,7 @@ class ProductLIst extends Component  {
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                  <button className="btn btn-primary" onClick={()=>{this.peticionPut(); this.alertUpGrade()}}>
+                  <button className="btn btn-primary" onClick={()=>{this.peticionPatch(); this.alertUpGrade()}}>
                     Actualizar
                     </button>                 
                   <button className="btn btn-danger" onClick={()=>this.modalInsertar()}>Cancelar</button>

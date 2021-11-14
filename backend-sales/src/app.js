@@ -31,9 +31,6 @@ app.use(jwtCheck);
 
 
 
-
-
-
 app.get('/',(req,res)=>{
     res.json({
         name:app.get('pkg').name,

@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
+import swal from 'sweetalert';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
     Button,
@@ -10,120 +11,119 @@ import {
         
   } from 'reactstrap';
 
-  const url = "http://localhost:4000/api/products"
-  // Endpoints conecxión cliente-servidor 
-    class ProductForm extends Component {  
-    state={
-        data:[],
-        form: {
-            sku: "",
-            name: "",
-            description: "",
-            price: "",
-            available: "",
-        }
+function ProductForm () {
+    const url = "http://localhost:4000/api/products"
+    const [data, setData]=useState({
+        id:"",
+        sku:"",
+        name:"",
+        description:"",
+        price:"",
+        available:"",
+    })
+    
+    function handle(e){
+        const newdata={...data}
+        newdata[e.target.id]=e.target.value
+        setData(newdata)
+        console.log(newdata)
+
+    }
+    function submit(e) {
+        e.preventDefault();
+        axios.post(url,{
+            id:data.id,
+            sku: data.sku,
+            name: data.name,
+            description: data.description,
+            price: data.price,
+            available:   data.available
+        })
+        .then(res=>{
+            console.log(res.data)
+        })
+
     }
 
-    submitHandler = e => {
-        console.log(this.state)
-        axios.post(url,this.state)
-        .then(response => {
-            console.log(response)
+    function alertUpGrade(){
+        swal({
+          title:"Proceso exitoso",
+          text: "Se almacenó correctamente",
+          icon: "info",
+          button: "Aceptar",
+          timer: "10000"
         })
-        .catch(error => {
-            console.log(error)
-        })
-    }
-// Función para capturar datos en el formulario
-    handleChange=async e=> {
-        e.persist();
-        await this.setState({
-            form: {
-                ...this.state.form,
-                [e.target.name]: e.target.value
-            }
-        });
-        console.log(this.state.form);
-    }
-   
-    
-    
-        
-      
-    
-    render() {
-        const {form}=this.state
-        return (
-            <div className="form1">
-                <h2 className="fw-bold text-secondary text-center">Bienvenido!!</h2>
-                <h4 className="text-start text-primary">Registra Productos</h4>
+      }
+    return (
+        <div className="form1">
+            <h2 className="fw-bold text-secondary text-center">Bienvenido!!</h2>
+            <h4 className="text-start text-primary">Registra Productos</h4>
+            <br/>
+            <Form onSubmit={(e)=>submit(e)}  className="form">
+                <FormGroup>
+                    <Label className="fs-4 fw-bolder" htmlFor="sku">SKU</Label>
+                    <Input className="form-control border-warning"
+                      type="text"
+                      name="sku"
+                      id="sku"
+                      placeholder="C-###"
+                      onChange={(e)=>handle(e)}
+                      value={data.sku}                                        
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label className="fs-4 fw-bolder" htmlFor="nombre">Nombre</Label>
+                    <Input className="form-control border-warning"
+                      type="text"
+                      name="name"
+                      id="name"
+                      onChange={(e)=>handle(e)}
+                      value={data.name}                  
+                       
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label className="fs-4 fw-bolder" htmlFor="description">Descripción</Label>
+                    <Input className="form-control border-warning"
+                      type="text"
+                      name="description"
+                      id="description"
+                      placeholder="Vino Blanco, Vino Rosado, Vino tinto, Vino claret"
+                      onChange={(e)=>handle(e)}
+                      value={data.description}                   
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label className="fs-4 fw-bolder" htmlFor="price">Precio</Label>
+                    <Input className="form-control border-warning"
+                      type="number"
+                      name="price"
+                      id="price"
+                      placeholder="$$$$$"
+                      onChange={(e)=>handle(e)}
+                      value={data.price}                   
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label className="fs-4 fw-bolder" htmlFor="nombre">Estado</Label>
+                    <Input className="form-control border-warning"
+                      type="text"
+                      name="available"
+                      id="available"
+                      placeholder="Disponible"
+                      onChange={(e)=>handle(e)}
+                      value={data.available}                   
+                    />             
+                </FormGroup>
                 <br/>
-                <Form onSubmit={this.submitHandler} className="form">
-                    <FormGroup>
-                        <Label className="fs-4 fw-bolder" htmlFor="sku">SKU</Label>
-                        <Input className="form-control border-warning"
-                        type="text"
-                        name="sku"
-                        id="sku"
-                        placeholder="C-###"
-                        onChange={this.handleChange}
-                        value={form.sku}
-                        />
-                  </FormGroup>
-                  <FormGroup>
-                      <Label className="fs-4 fw-bolder" htmlFor="nombre">Nombre</Label>
-                      <Input className="form-control border-warning"
-                       type="text"
-                       name="name"
-                       id="name"  
-                       onChange={this.handleChange}
-                       value={form.name}
-                      />
-                  </FormGroup>
-                  <FormGroup>
-                       <Label className="fs-4 fw-bolder" htmlFor="description">Descripción</Label>
-                       <Input className="form-control border-warning"
-                       type="text"
-                       name="description"
-                       id="description"
-                       placeholder="Vino Blanco, Vino Rosado, Vino tinto, Vino claret"
-                       onChange={this.handleChange}
-                       value={form.description}
-                      />
-                 </FormGroup>
-                 <FormGroup>
-                       <Label className="fs-4 fw-bolder" htmlFor="price">Precio</Label>
-                       <Input className="form-control border-warning"
-                       type="number"
-                       name="price"
-                       id="price"
-                       placeholder="78000"
-                       onChange={this.handleChange}
-                       value={form.price}
-                      />
-                  </FormGroup>
-                  <FormGroup>
-                       <Label className="fs-4 fw-bolder" htmlFor="nombre">Estado</Label>
-                       <Input className="form-control border-warning"
-                           type="select"
-                           name="available"
-                           id="available"
-                           onChange={this.handleChange}
-                           value={form.available}
-                           >
-                           <option value="Disponible">Disponible</option>
-                           <option value="No Disponible">No Disponible</option>
-                       </Input>              
-                  </FormGroup>
-                  <br/>
-                  <div className="col text-center">
-                      <Button type="submit" className="btn btn-secondary text-center" >Crear Producto</Button>
+                <div className="col text-center">
+                <Button type="submit" onClick={()=>alertUpGrade()}   className="btn btn-secondary text-center" >Crear Producto</Button>
                   </div>          
-               </Form>
-          </div>
-        );
-    }
+            </Form>
+        </div>
+    );
 
+    
 }
 
 export default ProductForm;

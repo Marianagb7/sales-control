@@ -21,9 +21,9 @@ function App() {
     <Auth0Provider
       domain="misiontic-appventas.us.auth0.com"
       clientId="hD6ENm2krarGEQqipTyNHig7qEfm3m4x"
-      redirectUri={window.location.origin}
+      redirectUri="http://localhost:3000/admin"
       audience= 'api-autenticacion-appventas-mintic'
-    >  
+    >
       <Router>
         <Switch>
           <Route path={['/admin', '/admin/usuarios', '/admin/productos',
@@ -44,21 +44,15 @@ function App() {
                 </div>
               </Switch> 
             </PrivateRoute>   
-          </Route>        
-          <Route path={['/login']}> 
+          </Route>   
+
+          <Route path={['/']}> 
           <Switch>
-            <Route path='/login'>
+            <Route path='/'>
               <Login/> 
             </Route>  
           </Switch> 
-          </Route>                       
-          <Route path={['/']}>
-            <PublictLayout>
-              <Route path='/'>
-              <Index/>
-              </Route>
-          </PublictLayout>
-          </Route>      
+          </Route>       
                 
         </Switch>
       </Router>     

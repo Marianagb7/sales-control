@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = "http://localhost:3000"
+const baseURL = "http://localhost:4000"
 
 const getToken = () => {
   return `Bearer ${localStorage.getItem('token')}`;
@@ -11,7 +11,7 @@ const getToken = () => {
 export const obtenerUsuarios = async (successCallback, errorCallback) => {
     const options = {
       method: 'GET',
-      url: `${baseURL}/usuarios/`,
+      url: 'http://localhost:3000/api/users/self',
       headers: {
         Authorization: getToken(),
       },
@@ -33,7 +33,7 @@ export const obtenerUsuarios = async (successCallback, errorCallback) => {
   export const editarUsuario = async (id, data, successCallback, errorCallback) => {
     const options = {
       method: 'PATCH',
-      url: `${baseURL}/usuarios/${id}/`,
+      url: `${baseURL}/users/${id}/`,
       headers: { 'Content-Type': 'application/json', Authorization: getToken() },
       data,
     };
