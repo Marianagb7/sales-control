@@ -22,7 +22,7 @@ function App() {
       clientId="hD6ENm2krarGEQqipTyNHig7qEfm3m4x"
       redirectUri="http://localhost:3000/admin"
       audience= 'api-autenticacion-appventas-mintic'
-    >  
+    >
       <Router>
         <Switch>
           <Route path={['/admin', '/admin/usuarios', '/admin/productos',
@@ -43,14 +43,23 @@ function App() {
                 </div>
               </Switch> 
             </PrivateRoute>   
+<<<<<<< HEAD
+          </Route>   
+
+=======
           </Route>        
+>>>>>>> e992176186799498250e9924e6507a23e99ad272
           <Route path={['/']}> 
           <Switch>
             <Route path='/'>
               <Login/> 
             </Route>  
           </Switch> 
+<<<<<<< HEAD
+          </Route>       
+=======
           </Route>             
+>>>>>>> e992176186799498250e9924e6507a23e99ad272
                 
         </Switch>
       </Router>     
