@@ -9,33 +9,33 @@ const getToken = () => {
 // CRUD PARA USUARIOS
 
 export const obtenerUsuarios = async (successCallback, errorCallback) => {
-    const options = {
-      method: 'GET',
-      url: `${baseURL}/usuarios/`,
-      headers: {
-        Authorization: getToken(),
-      },
-    };
-    await axios.request(options).then(successCallback).catch(errorCallback);
+  const options = {
+    method: 'GET',
+    url: `${baseURL}/users/`,
+    headers: {
+      Authorization: getToken(),
+    },
   };
-  
-  export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
-    const options = {
-      method: 'GET',
-      url: `${baseURL}/usuarios/self/`,
-      headers: {
-        Authorization: getToken(), 
-      },
-    };
-    await axios.request(options).then(successCallback).catch(errorCallback);
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
+  const options = {
+    method: 'GET',
+    url: `${baseURL}/users/self/`,
+    headers: {
+      Authorization: getToken(), 
+    },
   };
-  
-  export const editarUsuario = async (id, data, successCallback, errorCallback) => {
-    const options = {
-      method: 'PATCH',
-      url: `${baseURL}/usuarios/${id}/`,
-      headers: { 'Content-Type': 'application/json', Authorization: getToken() },
-      data,
-    };
-    await axios.request(options).then(successCallback).catch(errorCallback);
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const editarUsuario = async (id, data, successCallback, errorCallback) => {
+  const options = {
+    method: 'PATCH',
+    url: `${baseURL}/users/${id}/`,
+    headers: { 'Content-Type': 'application/json', Authorization: getToken() },
+    data,
   };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};

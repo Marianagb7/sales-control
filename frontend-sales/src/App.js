@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PublictLayout from './layout/publictlayaut/PublictLayout';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Index from './pages/Index'
@@ -21,7 +20,7 @@ function App() {
     <Auth0Provider
       domain="misiontic-appventas.us.auth0.com"
       clientId="hD6ENm2krarGEQqipTyNHig7qEfm3m4x"
-      redirectUri={window.location.origin}
+      redirectUri="http://localhost:3000/admin"
       audience= 'api-autenticacion-appventas-mintic'
     >  
       <Router>
@@ -45,20 +44,13 @@ function App() {
               </Switch> 
             </PrivateRoute>   
           </Route>        
-          <Route path={['/login']}> 
+          <Route path={['/']}> 
           <Switch>
-            <Route path='/login'>
+            <Route path='/'>
               <Login/> 
             </Route>  
           </Switch> 
-          </Route>                       
-          <Route path={['/']}>
-            <PublictLayout>
-              <Route path='/'>
-              <Index/>
-              </Route>
-          </PublictLayout>
-          </Route>      
+          </Route>             
                 
         </Switch>
       </Router>     

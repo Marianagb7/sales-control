@@ -4,8 +4,10 @@ import morgan from "morgan";
 import pkg from '../package.json';
 import productsRoutes from './routes/products.routes';
 import salesRoutes from './routes/sales.routes';
+import usersRoutes from './routes/users.routes';
 //import jwt from 'express-jwt';
 //import jwks from 'jwks-rsa';
+
 
 /*var jwtCheck = jwt({
     secret: jwks.expressJwtSecret({
@@ -29,11 +31,6 @@ app.use(express. json());
 app.use(cors());
 //app.use(jwtCheck);
 
-
-
-
-
-
 app.get('/',(req,res)=>{
     res.json({
         name:app.get('pkg').name,
@@ -44,5 +41,6 @@ app.get('/',(req,res)=>{
 })
 app.use('/api/products', productsRoutes);
 app.use('/api/sales', salesRoutes);
+app.use(usersRoutes);
 
 export default app;

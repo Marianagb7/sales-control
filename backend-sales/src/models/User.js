@@ -1,34 +1,22 @@
 import { Schema, model } from "mongoose";
-import bcrypt from "bcryptjs";
 
 const userSchema = new Schema(
     {
         username: {
             type: String,
-            unique: true
+
         },
         name: {
-            type: String,
-            unique: true
+            type: String
         },
         lastname: {
-            type: String,
-            unique: true
-        },
-        password: {
-            type: String,
-            required: true
-        },
-        identification: {
-            type:Number,
-            unique: true
+            type: String
         },
         phone: {
-            type: Number,
-            unique: true
+            type: Number
         },
         email: {
-            type: String,
+            type: String
         },
         roles: [
             {
@@ -38,8 +26,7 @@ const userSchema = new Schema(
             },
         ],
         state: {
-            type: String,
-            unique: true
+            type: String
         }
     }, {
         timestamps: true,
@@ -47,16 +34,6 @@ const userSchema = new Schema(
     }
 );
 
-userSchema.static.encryptPassword = async (password) => {
-
-    const salt = await bcrypt.genSalt(10);
-    return await bcrypt.hash(password, salt);
-}
-
-userSchema.static.comparePassword = async (password, receivedPassword) => {
-
-    return await bcrypt.compare(password, receivedPassword)
-}
 
 export default model('user', userSchema);
     
