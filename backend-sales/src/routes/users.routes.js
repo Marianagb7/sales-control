@@ -1,7 +1,7 @@
-import Express from 'express';
+import express from 'express';
 import { createUser, getUser, updateUserById, deleteUserById } from '../controllers/users.controller.js';
 
-const rutasUsuario = Express.Router();
+const rutasUsuario = express.Router();
 
 const genercCallback = (res) => (err, result) => {
   if (err) {
