@@ -43,6 +43,7 @@ function App() {
                 </div>
               </Switch> 
             </PrivateRoute> 
+            </Route>
             <Route path={['/']}> 
               <Switch>
                 <Route path='/'>

@@ -4,7 +4,10 @@ import config from './config'
 
 mongoose.connect(config.DB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,    
+  useUnifiedTopology: true,
+  
+  
+    
 })
 
   .then(() => console.log('DB is connected'))
