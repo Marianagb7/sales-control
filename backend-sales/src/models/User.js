@@ -4,23 +4,6 @@ const userSchema = new Schema(
     {
         username: {
             type: String,
-<<<<<<< HEAD
-        },
-        name: {
-            type: String,
-        },
-        lastname: {
-            type: String,
-        },
-        password: {
-            type: String,
-        },
-        identification: {
-            type:Number,
-        },
-        phone: {
-            type: Number,
-=======
 
         },
         name: {
@@ -31,7 +14,6 @@ const userSchema = new Schema(
         },
         phone: {
             type: Number
->>>>>>> e992176186799498250e9924e6507a23e99ad272
         },
         email: {
             type: String
@@ -44,11 +26,7 @@ const userSchema = new Schema(
             },
         ],
         state: {
-<<<<<<< HEAD
             type: String,
-=======
-            type: String
->>>>>>> e992176186799498250e9924e6507a23e99ad272
         }
     }, {
         timestamps: true,

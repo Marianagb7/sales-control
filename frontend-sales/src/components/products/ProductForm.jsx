@@ -12,7 +12,7 @@ import {
   } from 'reactstrap';
 
 function ProductForm () {
-    const url = "https://ebrovinos-misiontic.herokuapp.com/api/products"
+    const url = "https://ebrovinos.herokuapp.com/api/products"
     const [data, setData]=useState({
         id:"",
         sku:"",

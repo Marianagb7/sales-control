@@ -4,8 +4,6 @@ import Logo from "../assets/logo.jpg";
 
 const Sidebar = () => {
     return (
-        
-        
         <div className='sidebar bg.light'>
                         
             <div className="brand" >                

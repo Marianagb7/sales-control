@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = "https://localhost:3000/"
+const baseURL = "https://ebrovinos.herokuapp.com/"
 
 const getToken = () => {
   return `Bearer ${localStorage.getItem('token')}`;

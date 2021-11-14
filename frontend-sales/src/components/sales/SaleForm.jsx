@@ -12,7 +12,7 @@ import {
   } from 'reactstrap';
 
 function SaleForm () {
-    const url = "https://localhost:3000"
+    const url = "https://ebrovinos.herokuapp.com/"
     const [data, setData]=useState({
         salecode:"",
         customer:"",
