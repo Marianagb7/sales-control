@@ -42,10 +42,10 @@ const NavbarNav = (props) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  Mi perfíl
+                  
                 </DropdownItem>
                 <DropdownItem>
-                  Configuraciones
+                  
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem onClick={() => cerrarSesion()}>

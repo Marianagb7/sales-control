@@ -12,7 +12,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
 
 function SaleList(){
 
-    const url ="http://localhost:4000/api/sales";
+    const url ="https://ebrovinos-misiontic.herokuapp.com/api/sales";
 
     const [sales, setSales]=useState([]);
     const [tablesales, setTablesales]=useState([]);

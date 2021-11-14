@@ -20,7 +20,7 @@ function App() {
     <Auth0Provider
       domain="misiontic-appventas.us.auth0.com"
       clientId="hD6ENm2krarGEQqipTyNHig7qEfm3m4x"
-      redirectUri="http://localhost:3000/admin"
+      redirectUri="https://ebrovinos-misiontic.herokuapp.com/admin"
       audience= 'api-autenticacion-appventas-mintic'
     >
       <Router>
@@ -42,27 +42,16 @@ function App() {
                   </div>
                 </div>
               </Switch> 
-            </PrivateRoute>   
-<<<<<<< HEAD
-          </Route>   
-
-=======
-          </Route>        
->>>>>>> e992176186799498250e9924e6507a23e99ad272
-          <Route path={['/']}> 
-          <Switch>
-            <Route path='/'>
-              <Login/> 
-            </Route>  
-          </Switch> 
-<<<<<<< HEAD
-          </Route>       
-=======
-          </Route>             
->>>>>>> e992176186799498250e9924e6507a23e99ad272
-                
-        </Switch>
-      </Router>     
+            </PrivateRoute> 
+            <Route path={['/']}> 
+              <Switch>
+                <Route path='/'>
+                  <Login/> 
+                </Route>  
+              </Switch>
+            </Route>
+          </Switch>
+        </Router>     
     </Auth0Provider>     
         
   );
