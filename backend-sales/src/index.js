@@ -2,7 +2,10 @@ import app from './app';
 import morgan from 'morgan';
 import './database';
 
-app.listen(4000)
+dotenv.config({path: './env'});
+const port = process.env.APP_PORT || 4000;
+
+app.listen(port)
 app.use(morgan('dev'));
 
 
