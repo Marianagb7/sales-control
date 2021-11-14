@@ -13,7 +13,7 @@ function SearchProduct(){
     const [busqueda, setBusqueda]=useState("");
 
     const peticionesGet=async()=>{
-        await axios.get("https://ebrovinos-misiontic.herokuapp.com/api/products").then(response=>{
+        await axios.get("https://localhost:3000").then(response=>{
             setProductos(response.data);
             setTablaProductos(response.data);
         }).catch(error=>{
