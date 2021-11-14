@@ -8,6 +8,9 @@
     "dev": "nodemon src/index.js --exec babel-node",
     "start": "node build/index.js"
   },
+    "engines": {
+      "node": "14.x"
+  },
   "keywords": [],
   "author": "Mariana Gómez",
   "license": "ISC",
