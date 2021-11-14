@@ -4,7 +4,7 @@ import morgan from "morgan";
 import pkg from '../package.json';
 import productsRoutes from './routes/products.routes';
 import salesRoutes from './routes/sales.routes';
-import UserRoutes from './routes/users.routes'
+import userRoutes from './routes/users.routes'
 //import jwt from 'express-jwt';
 //import jwks from 'jwks-rsa';
 
@@ -45,6 +45,6 @@ app.get('/',(req,res)=>{
 })
 app.use('/api/products', productsRoutes);
 app.use('/api/sales', salesRoutes);
-app.use(UserRoutes);
+app.use(userRoutes);
 
 export default app;
