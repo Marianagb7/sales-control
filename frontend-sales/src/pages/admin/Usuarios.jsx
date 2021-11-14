@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import PrivateComponent from '../../components/PrivateComponent.js';
 import { nanoid } from 'nanoid';
 import React, { useState, useEffect } from 'react';
@@ -130,5 +131,20 @@ const EstadoUsuario = ({ user }) => {
     </select>
   );
 };
+=======
+import React from "react";
+import GestionUsuarios from '../../components/users/GestionUsuarios';
+
+const Usuarios = () => {
+    return (
+        <div className="tablelist">
+           <h2 className=
+           " fw-bold text-secondary text-center ">
+            Gestiona de Usuarios!!</h2> 
+            <GestionUsuarios/>
+       </div>        
+    )
+}
+>>>>>>> e992176186799498250e9924e6507a23e99ad272
 
 export default Usuarios;

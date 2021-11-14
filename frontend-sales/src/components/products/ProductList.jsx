@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,15 +7,23 @@ import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Table } from "reactstrap";
 import { Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
 
-const url = "http://localhost:4000/api/products"
+
+
+const url = "http://localhost:4000/api/products";
+
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+
 // Endpoints conecxión cliente-servidor
-class ProductLIst extends Component  {
+class ProductLIst extends Component  {  
   state = {
     data: [],
     modalInsertar: false,
     modalEliminar: false, 
     tipoModal: false, 
+                                 
   }
+  
 // Listar productos
   peticionGet = () => {
     axios.get(url).then(response => {
@@ -24,6 +32,8 @@ class ProductLIst extends Component  {
         console.log(error.message);
      })
   }
+
+  
 // Actualizar producto
   peticionPatch=()=>{
     axios.patch(url+"/${producto._id}"+this.state.form._id, this.state.form).then(reponse=>{
@@ -38,25 +48,27 @@ class ProductLIst extends Component  {
       this.peticionGet();
     })
   }  
- 
+   
 
   modalInsertar = () => {
     this.setState({modalInsertar: !this.state.modalInsertar});
   }
-
-  seleccionarProduct=(product)=>{
-    this.setState({
+  
+   seleccionarProduct=(product)=>{
+    this.setState({ 
+            
       form: {
         _id: product._id,
         sku: product.sku,
         name: product.name,
         description: product.description,
         price: product.price,
-        available: product.available
-      }
+        available: product.available,                
+      },    
+             
     })
-  }
-
+  }   
+  
   handleChange =async e=> {
     e.persist();
     await this.setState({
@@ -64,30 +76,38 @@ class ProductLIst extends Component  {
         ...this.state.form,
         [e.target.name]: e.target.value
       }
+      
     });
-     console.log(this.state.form);
-  }
+     console.log(this.state.form);         
+        
+  }   
+  
+
   alertUpGrade=()=>{
     swal({
       title:"Proceso exitoso",
-      text: "Se actualizo correctamente",
+      text: "Se actualizó correctamente",
       icon: "info",
       button: "Aceptar",
       timer: "3000"
     })
-  }
+  } 
 
 
   componentDidMount () {
-    this.peticionGet();
+    this.peticionGet();      
+       
+  } 
+  
 
-  }
   render () {
-    const {form}=this.state;        
+    const {form}=this.state;   
     return (
-      // Tabla listar productos
+            
       <div>
-        <Table striped bordered hover size="sm">
+        
+        <br/>
+        <Table  striped bordered hover size="sm">
           <thead className="text-center">
             <tr>             
               <th className="col-sm-1">Sku</th>
@@ -99,6 +119,7 @@ class ProductLIst extends Component  {
             </tr>              
           </thead>
           <tbody>
+            
             {this.state.data.map(product => {
               return (
                 <tr className="lead text-center  fs-5 h4 ">

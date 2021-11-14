@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import express from 'express';
 import { queryAllUsers, crearUsuario, editarUsuario, eliminarUsuario, consultarUsuario, consultarOCrearUsuario,} from '../../controllers/usuarios/controller.js';
+=======
+import Express from 'express';
+import { createUser, getUser, updateUserById, deleteUserById } from '../controllers/users.controller.js';
+>>>>>>> e992176186799498250e9924e6507a23e99ad272
 
 const rutasUsuario = express.Router();
 
@@ -13,6 +18,7 @@ const genercCallback = (res) => (err, result) => {
 
 rutasUsuario.route('/api/users').get((req, res) => {
   console.log('alguien hizo get en la ruta /api/users');
+<<<<<<< HEAD
   queryAllUsers(genercCallback(res));
 });
 
@@ -25,18 +31,24 @@ rutasUsuario.route('/usuarios/self').get((req, res) => {
   consultarOCrearUsuario(req, genercCallback(res));
   // consultarUsuario(, genercCallback(res));
 });
-
-rutasUsuario.route('/usuarios/:id').get((req, res) => {
-  console.log('alguien hizo get en la ruta /usuarios');
-  consultarUsuario(req.params.id, genercCallback(res));
+=======
+  createUser(genercCallback(res));
 });
 
-rutasUsuario.route('/usuarios/:id').patch((req, res) => {
-  editarUsuario(req.params.id, req.body, genercCallback(res));
-});
+rutasUsuario.route('/api/users').get((req, res) => {
+    console.log('alguien hizo get en la ruta /api/users');
+    getUser(genercCallback(res));
+  });
+>>>>>>> e992176186799498250e9924e6507a23e99ad272
 
-rutasUsuario.route('/usuarios/:id').delete((req, res) => {
-  eliminarUsuario(req.params.id, genercCallback(res));
-});
+rutasUsuario.route('/api/users/:Id').get((req, res) => {
+    console.log('alguien hizo get en la ruta /api/users');
+    updateUserById(genercCallback(res));
+  });
+
+rutasUsuario.route('/api/users/:Id').get((req, res) => {
+    console.log('alguien hizo get en la ruta /api/users');
+    deleteUserById(genercCallback(res));
+  });
 
 export default rutasUsuario;

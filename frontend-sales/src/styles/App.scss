@@ -64,10 +64,33 @@ $cyan:#dfa017;
     margin: 0.5rem 2rem;
          
 }
+.tablelist {
+  
 .prueba {
     width: 95%;
     margin: 0.5rem   1rem;
     
 }
 
+.containerInput {
+    align-items: end;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 25px;
+}
 
+.inputBuscar{
+    width: 50% !important;
+}
+
+@media (max-width: 988px) {
+    .inputBuscar{
+      width: 100% !important;
+    }
+       
+   .containerInput  {
+      padding-bottom: 15px;
+   }
+}
+}

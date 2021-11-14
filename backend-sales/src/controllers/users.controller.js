@@ -1,67 +1,119 @@
 import { ObjectId } from 'mongodb';
-import { getDB } from '../../db/db.js';
 import jwt_decode from 'jwt-decode';
 
-const queryAllUsers = async (callback) => {
-  const baseDeDatos = getDB();
-  console.log('query');
-  await baseDeDatos.collection('usuario').find({}).limit(50).toArray(callback);
+const conectarDB = (callback) => {
+    client.connect((err,db) => {
+        if(err) {
+            console.error('Error conectando a la bases de datos');
+            return 'error';
+        }
+        baseDeDatos = db.db('sales-control')
+        console.log('baseDeDatos exitosa');
+            return callback(); 
+    });
 };
 
-const crearUsuario = async (datosUsuario, callback) => {
+const getDB = () => {
+    return baseDeDatos;
+  };
+
+
+const createUser = async (datosUsuario, callback) => {
   const baseDeDatos = getDB();
-  await baseDeDatos.collection('usuario').insertOne(datosUsuario, callback);
+  await baseDeDatos.collection('users').insertOne(datosUsuario, callback);
 };
 
-const consultarUsuario = async (id, callback) => {
+const getUser = async (id, callback) => {
   const baseDeDatos = getDB();
-  await baseDeDatos.collection('usuario').findOne({ _id: new ObjectId(id) }, callback);
+  await baseDeDatos.collection('users').findOne({ _id: new ObjectId(id) }, callback);
 };
 
-const consultarOCrearUsuario = async (req, callback) => {
-  console.log('Estoy llegando a crear usuario');
-  const token = req.headers.authorization.split('Bearer ')[1];
-  const user = jwt_decode(token)['http://localhost/userData'];
-  console.log(user);
-
-  const baseDeDatos = getDB();
-  await baseDeDatos.collection('usuario').findOne({ email: user.email }, async (err, response) => {
-    console.log('response consulta bd', response);
-    if (response) {
-      callback(err, response);
-    } else {
-      user.auth0ID = user._id;
-      delete user._id;
-      user.rol = 'sin rol';
-      user.estado = 'pendiente';
-      await crearUsuario(user, (err, respuesta) => callback(err, user));
-    }
-  });
-};
-
-const editarUsuario = async (id, edicion, callback) => {
+const updateUserById = async (id, edicion, callback) => {
   const filtroUsuario = { _id: new ObjectId(id) };
   const operacion = {
     $set: edicion,
   };
   const baseDeDatos = getDB();
   await baseDeDatos
-    .collection('usuario')
+    .collection('users')
     .findOneAndUpdate(filtroUsuario, operacion, { upsert: true, returnOriginal: true }, callback);
 };
 
-const eliminarUsuario = async (id, callback) => {
+const deleteUserById = async (id, callback) => {
   const filtroUsuario = { _id: new ObjectId(id) };
   const baseDeDatos = getDB();
-  await baseDeDatos.collection('usuario').deleteOne(filtroUsuario, callback);
+  await baseDeDatos.collection('users').deleteOne(filtroUsuario, callback);
 };
 
 export {
-  queryAllUsers,
-  crearUsuario,
-  consultarUsuario,
-  editarUsuario,
-  eliminarUsuario,
-  consultarOCrearUsuario,
+  getUser,
+  createUser,
+  updateUserById,
+  deleteUserById,
 };
+
+
+/*import User from '../models/User';
+
+export const createUser = async (req, res) => {
+    const { username, name, lastname, phone,email, roles, state } = req.body;
+  
+    try {
+      const newUser = new User({
+        username,
+        name,
+        lastname,
+        phone,
+        email,
+        roles,
+        state
+      });
+  
+      const userSaved = await newUser.save();
+  
+      res.status(201).json(userSaved);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json(error);
+    }
+};
+
+//Listar usuarios
+export const getUser = async (req, res) => {
+
+    try {
+        const user = await User.find({});
+        res.json(user);
+    } catch (error) {
+        res.status(400).json({
+            message:'Error procesar la petición'
+        });
+        next();
+    }
+};
+
+// Actualizar usuario
+export const updateUserById = async (req, res) => {
+    const updateUserById = await User.findByIdAndUpdate(
+        req.params.userId,
+        req.body,
+        {
+            new: true,
+        }
+    );
+    res.status(200).json({ message: 'Usuario actualizada'});
+};
+
+// Eliminar usuario
+export const deleteUserById = async (req, res) => {
+    const { userId } = req.params;
+
+    await User.findByIdAndDelete(userId);
+
+    res.status(200).json({ message: 'Usuario eliminada'});
+};*/
+
+
+
+
 

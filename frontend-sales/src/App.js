@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PublictLayout from './layout/publictlayaut/PublictLayout';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Index from './pages/Index'
@@ -44,15 +43,23 @@ function App() {
                 </div>
               </Switch> 
             </PrivateRoute>   
+<<<<<<< HEAD
           </Route>   
 
+=======
+          </Route>        
+>>>>>>> e992176186799498250e9924e6507a23e99ad272
           <Route path={['/']}> 
           <Switch>
             <Route path='/'>
               <Login/> 
             </Route>  
           </Switch> 
+<<<<<<< HEAD
           </Route>       
+=======
+          </Route>             
+>>>>>>> e992176186799498250e9924e6507a23e99ad272
                 
         </Switch>
       </Router>     

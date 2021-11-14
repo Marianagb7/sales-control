@@ -1,10 +1,14 @@
 import React from 'react';
-
+import SearchProduct from '../components/products/SearchProduct';
 
 const Admin = ()=> {
 
     return(
-        <div>Pagina para administración</div>
+        <div className="container">
+            <h4>En el inventario!!</h4>
+            <SearchProduct/>
+            
+        </div>
 
     )
      
