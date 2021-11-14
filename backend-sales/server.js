@@ -1,6 +1,14 @@
+import app from './app';
+import './database';
 
-const express = require('express')
 
-const app = express()
-const port = 8080
-app.listen(port,() => console.log(`llisten on${port}`))
+app.listen(4000)
+app.get('/', (req, res) => {
+    res.json("welcome")
+});
+
+
+
+
+console.log('Server listen on port', 4000)
+
