@@ -4,12 +4,41 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src --out-dir build",
+    "dev": "nodemon src/index.js --exec babel-node",
+    "start": "node build/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mariana Gómez",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "@auth0/auth0-react": "^1.8.0",
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.1.0",
+    "express-oauth2-jwt-bearer": "^1.0.1",
+    "express-session": "^1.17.2",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^2.0.5",
+    "mkdirp": "^1.0.4",
+    "mongodb": "^4.1.4",
+    "mongoose": "^6.0.10",
+    "morgan": "^1.10.0",
+    "passport": "^0.5.0",
+    "passport-google-oauth2": "^0.2.0",
+    "req-flash": "^0.0.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "nodemon": "^2.0.13",
+    "standard": "^16.0.4"
   }
 }

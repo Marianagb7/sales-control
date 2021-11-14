@@ -1,0 +1,73 @@
+[
+    {
+        "id" : "098",
+        "username" : "PaulaSaavedra95",
+        "nombre" : "Paula",
+        "apellido" : "Saavedra",
+        "phone" : "3178486269",
+        "email" : "paula.saavedra95@gmail.com",
+        "rol" : "administrador",
+        "estado" : "autorizado"
+    },
+    {
+        "id" : "067",
+        "username" : "Mariana_79",
+        "nombre" : "Mariana",
+        "apellido" : "Gomez",
+        "phone" : "3189098945",
+        "email" : "mariana_79a@gmail.com",
+        "rol" : "administrador",
+        "estado" : "autorizado"
+    },
+    {
+        "id" : "014",
+        "username" : "Alejandro_Mora",
+        "nombre" : "Alejandro",
+        "apellido" : "Mora",
+        "phone" : "3126568237",
+        "email" : "alejo_mora@gmail.com",
+        "rol" : "Vendedor",
+        "estado" : "autorizado"
+    },
+    {
+        "id" : "124",
+        "username" : "RamiroC78",
+        "nombre" : "Ramiro",
+        "apellido" : "Cordoba",
+        "phone" : "3054014173",
+        "email" : "ramiroC78@gmail.com",
+        "rol" : "Vendedor",
+        "estado" : "autorizado"
+    },
+    {
+        "id" : "987",
+        "username" : "Tatiana950711",
+        "nombre" : "Tatiana",
+        "apellido" : "Samper",
+        "phone" : "3103653599",
+        "email" : "tsamper.lopez@gmail.com",
+        "rol" : "Vendedor",
+        "estado" : "autorizado"
+    },
+    {
+        "id" : "008",
+        "username" : "Gomez904",
+        "nombre" : "Martha",
+        "apellido" : " Gómez",
+        "phone" : "3235666134",
+        "email" : "margomez@gmail.com",
+        "rol" : "Vendedor",
+        "estado" : "autorizado"
+    },
+    {
+        "id" : "343",
+        "username" : "StevenLampion",
+        "nombre" : "Steven",
+        "apellido" : "Lampion",
+        "phone" : "3104398986",
+        "email" : "davidstevenlampion@gmail.com",
+        "rol" : "Usuario",
+        "estado" : "Pendiente"
+    }
+
+]
